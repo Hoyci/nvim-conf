@@ -18,6 +18,8 @@ vim.keymap.set("n", "<C-v>", '"+p', { desc = "Colar do clipboard" })
 vim.keymap.set("n", "<C-z>", "u", { desc = "Desfazer (undo)" })
 vim.keymap.set("n", "<C-y>", "<C-r>", { desc = "Refazer (redo)" })
 vim.keymap.set("n", "<leader>tt", ":vert botright terminal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-f>", "/")
+vim.keymap.set("n", "<CS-f>", ":vimgrep /")
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
