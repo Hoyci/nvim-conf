@@ -6,3 +6,5 @@ vim.g.mapleader = " "
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.keymap.set("n", "<Leader>gg", ":LazyGit<CR>", {})

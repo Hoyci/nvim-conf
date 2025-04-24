@@ -10,6 +10,7 @@ return {
         "golangci-lint",
         "black",
         "isort",
+        "delve",
 			},
 			auto_update = true,
 			run_on_start = true,
