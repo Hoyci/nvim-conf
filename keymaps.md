@@ -77,12 +77,12 @@
 
 | Ação                        | Comando     |
 |-----------------------------|-------------|
-| Nova janela                 | `Ctrl-b c`  |
-| Próxima janela              | `Ctrl-b n`  |
-| Janela anterior             | `Ctrl-b p`  |
-| Dividir painel horizontal   | `Ctrl-b "`  |
-| Dividir painel vertical     | `Ctrl-b %`  |
-| Alternar entre painéis      | `Ctrl-b` + setas |
+| Nova janela                 | `Ctrl-s c`  |
+| Próxima janela              | `Ctrl-s n`  |
+| Janela anterior             | `Ctrl-s p`  |
+| Dividir painel horizontal   | `Ctrl-s "`  |
+| Dividir painel vertical     | `Ctrl-s %`  |
+| Alternar entre painéis      | `Ctrl-s` + setas |
 | Fechar painel/janela        | `exit`      |
 
 ### Other Options
