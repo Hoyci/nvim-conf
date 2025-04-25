@@ -49,11 +49,41 @@
 
 # TMUX Macros
 
-## Copy Mode (VI)
+## 📋 Copy Mode (VI)
 
-| Key              | Action                        | Description                     |
-|-------------------|-------------------------------|---------------------------------|
-| `y`              | `send -X copy-selection`      | Copy selection in vi mode       |
+| Key               | Action                      | Description                    |
+|------------------|-----------------------------|--------------------------------|
+| `Ctrl-b [`        | Entra no modo de cópia      | Inicia o copy-mode (vi)        |
+| `v`               | Inicia seleção              | Seleção visual estilo vim      |
+| `y`               | `send -X copy-selection`    | Copia a seleção                |
+| `Enter`           | Confirma cópia              | Copia e sai do modo de cópia   |
+| `q` / `Esc`       | Sai do modo de cópia        | Cancela sem copiar             |
+
+---
+
+## 🖥️ Sessões
+
+| Ação                    | Comando                          |
+|-------------------------|----------------------------------|
+| Iniciar uma sessão      | `tmux` ou `tmux new -s nomedases` |
+| Separar (detach) da sessão | `Ctrl-b d`                    |
+| Voltar para sessão      | `tmux attach -t nomedases`       |
+| Listar sessões          | `tmux ls`                        |
+| Matar sessão            | `tmux kill-session -t nomedases` |
+
+---
+
+## 🪟 Janelas & Paineis
+
+| Ação                        | Comando     |
+|-----------------------------|-------------|
+| Nova janela                 | `Ctrl-b c`  |
+| Próxima janela              | `Ctrl-b n`  |
+| Janela anterior             | `Ctrl-b p`  |
+| Dividir painel horizontal   | `Ctrl-b "`  |
+| Dividir painel vertical     | `Ctrl-b %`  |
+| Alternar entre painéis      | `Ctrl-b` + setas |
+| Fechar painel/janela        | `exit`      |
 
 ### Other Options
 
