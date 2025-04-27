@@ -20,6 +20,9 @@ return {
 				-- Ferramentas Lua
 				"stylua",
 				"lua-language-server",
+
+        -- Ferramentas uteis
+        "json-lsp",
 			},
 			auto_update = true,
 			run_on_start = true,
