@@ -44,6 +44,54 @@ fi
 # Installing clipboard utilities
 sudo apt-get install -y xclip xsel
 
+# Install or update tmux
+if ! command -v tmux >/dev/null 2>&1; then
+    echo "tmux is not installed. Installing..."
+    sudo apt update
+    sudo apt install -y tmux
+    if [ $? -eq 0 ]; then
+        echo "tmux was successfully installed!"
+        tmux -V
+    else
+        echo "tmux installation failed." >&2
+        exit 1
+    fi
+else
+    echo "tmux is already installed:"
+    tmux -V
+    echo "Updating tmux to the latest version..."
+    sudo apt update
+    sudo apt install --only-upgrade -y tmux
+    if [ $? -eq 0 ]; then
+        echo "tmux was successfully updated!"
+        tmux -V
+    else
+        echo "tmux update failed." >&2
+        exit 1
+    fi
+fi
+
+# Setting up tmux configuration
+echo "Setting up tmux configuration..."
+
+# Resolve the path of the install.sh script
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+# Copy .tmux.conf to the user's home directory
+cp "$SCRIPT_DIR/.tmux.conf" ~/.tmux.conf
+
+echo ".tmux.conf has been copied to your home directory."
+
+# Install TPM (Tmux Plugin Manager) if not installed
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "Installing TPM (Tmux Plugin Manager)..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+    echo "TPM already installed."
+fi
+
+~/.tmux/plugins/tpm/bin/install_plugins
+
 # Check if go is already installed
 if ! command -v go &> /dev/null; then
     echo "Go is not installed. Installing..."
