@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
-vim.env.PATH = vim.env.PATH .. ':/usr/local/go/bin:/usr/bin:/bin:/usr/local/bin:' .. os.getenv("HOME") .. "/go/bin"
+vim.env.PATH = vim.env.PATH .. ':/usr/local/go/bin:/usr/bin:/bin:/usr/local/bin:' .. os.getenv("HOME") .. "/go/bin" .. ":~/.local/share/nvim/mason/bin"
 vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")

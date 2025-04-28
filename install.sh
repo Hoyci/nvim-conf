@@ -109,6 +109,15 @@ else
     go version
 fi
 
+
+if ! grep -Fxq "export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"" ~/.bashrc; then
+    echo "export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"" >> ~/.bashrc
+    echo "Mason PATH added to PATH in ~/.bashrc."
+else
+    echo "Mason PATH already exists in ~/.bashrc."
+fi
+  
+
 # List of packages to install
 PACKAGES="python3-dev python3-pip python3-venv"
 
