@@ -1,59 +1,58 @@
 return {
   {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup({
-        pip = {
-          upgrade_pip = true,
-          install_args = {},
-        },
-      })
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "gopls" },
-      })
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+      require("mason").setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "gopls", "pyright" },
+        automatic_installation = true,
       })
 
-      lspconfig.pyright.setup({
+      local lspconfig = require("lspconfig")
+
+      -- Configuração para Lua
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
         settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = "basic",
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
             },
           },
         },
       })
 
+      -- Configuração para Go
       lspconfig.gopls.setup({
-        cmd = { "gopls" },
         capabilities = capabilities,
         settings = {
-          usePlaceholders = true,
-          completeUnimported = true,
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+          },
         },
       })
 
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "<leader>fr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+      -- Configuração para Python
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
+      })
+
+      -- Keymaps
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation" })
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Show references" })
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
     end,
   },
 }

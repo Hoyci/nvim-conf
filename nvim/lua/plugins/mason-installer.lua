@@ -1,32 +1,27 @@
 return {
-	"WhoIsSethDaniel/mason-tool-installer.nvim",
-	config = function()
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				-- Ferramentas Go
-				"gopls",
-				"goimports",
-				"gofumpt",
-				"golangci-lint",
-				"delve",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
+  dependencies = { "williamboman/mason.nvim" },
+  config = function()
+    require("mason-tool-installer").setup({
+      ensure_installed = {
+        -- LSP Servers
+        "lua-language-server",
+        "gopls",
+        "pyright",
 
-				-- Ferramentas Python
-				"pyright",
-				"black",
-				"isort",
-				"ruff",
-				"debugpy",
+        -- Formatters
+        "stylua",
+        "black",
+        "isort",
+        "gofumpt",
+        "goimports",
 
-				-- Ferramentas Lua
-				"stylua",
-				"lua-language-server",
-
-        -- Ferramentas uteis
-        "json-lsp",
-			},
-			auto_update = true,
-			run_on_start = true,
-			start_delay = 3000,
-		})
-	end,
+        -- Linters
+        "ruff",
+        "golangci-lint",
+      },
+      auto_update = false,
+      run_on_start = true,
+    })
+  end,
 }

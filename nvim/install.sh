@@ -75,10 +75,17 @@ fi
 echo "Setting up tmux configuration..."
 
 # Resolve the path of the install.sh script
-SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+TMUX_SOURCE="$HOME/.config/tmux/.tmux.conf"
+TMUX_DEST="$HOME/.tmux.conf"
 
-# Copy .tmux.conf to the user's home directory
-cp "$SCRIPT_DIR/.tmux.conf" ~/.tmux.conf
+if [ -f "$TMUX_SOURCE" ]; then
+    cp "$TMUX_SOURCE" "$TMUX_DEST"
+    echo ".tmux.conf foi copiado de $TMUX_SOURCE para $TMUX_DEST"
+else
+    echo "Erro: Arquivo .tmux.conf não encontrado em $TMUX_SOURCE" >&2
+    echo "Por favor, crie o arquivo de configuração primeiro." >&2
+    exit 1
+fi
 
 echo ".tmux.conf has been copied to your home directory."
 
